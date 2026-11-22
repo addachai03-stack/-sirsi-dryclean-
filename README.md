@@ -14,7 +14,15 @@ The garment rates in `index.html` are **demo placeholders, not verified shop pri
 
 No store address, hours, pickup, or delivery commitment is shown because those details have not been provided.
 
-## Free GitHub Pages hosting (iPhone compatible)
+## Cloudflare Pages hosting (connected to GitHub)
+
+- Cloudflare Pages project: `sirsi-dryclean`
+- Cloudflare Pages URL: https://sirsi-dryclean.pages.dev/
+- Connected repository: `addachai03-stack/-sirsi-dryclean-` (`main` branch)
+- Static site; automatic production deployment is enabled for new GitHub commits.
+- The sample prices must be confirmed with the shop before treating them as final.
+
+## Optional GitHub Pages hosting (iPhone compatible)
 
 1. On GitHub, create a **public** repository named `-sirsi-dryclean-`.
 2. Add `index.html`, `favicon.svg`, and this README in the **root** (not a nested folder).
