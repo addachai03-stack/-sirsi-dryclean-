@@ -48,7 +48,7 @@ export async function loadPrices(db){
     db.prepare('SELECT id,category,name,price,detail,position FROM prices ORDER BY category,position,name').all(),
     db.prepare("SELECT value FROM shop_settings WHERE key='published'").first()
   ]);
-  const prices={iron:[],dry:[]};
+  const prices={iron:[],dry:[],wash:[],other:[]};
   for(const x of rows.results||[]){
     if(prices[x.category])prices[x.category].push({id:x.id,name:x.name,price:Number(x.price),detail:x.detail});
   }
@@ -57,7 +57,7 @@ export async function loadPrices(db){
 export function isValidPriceItem(item){
   return item && typeof item==='object' &&
     /^[a-z0-9_-]{3,64}$/.test(item.id||'') &&
-    ['iron','dry'].includes(item.category) &&
+    ['iron','dry','wash','other'].includes(item.category) &&
     typeof item.name==='string' && item.name.trim().length>0 && item.name.trim().length<=70 &&
     Number.isInteger(item.price) && item.price>=0 && item.price<=100000 &&
     typeof item.detail==='string' && item.detail.trim().length>0 && item.detail.trim().length<=70;
