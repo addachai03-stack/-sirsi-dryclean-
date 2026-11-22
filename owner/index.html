@@ -37,6 +37,20 @@
   <label class="switcher" for="confirmed"><input type="checkbox" id="confirmed"><span><b>I have checked all prices · Verified rates</b><small>On karne ke baad website demo warning hata degi aur “Shop-listed prices” dikhaegi. Agar prices pending hain to off rakhein.</small></span></label>
   <p id="save-status" class="status" aria-live="polite"></p>
  </section>
+ <section class="card">
+  <h2>Change owner password</h2>
+  <p class="muted">Owner apna password badal sakta hai. Badalne par sab sessions log out ho jayenge.</p>
+  <form id="change-password-form">
+    <label class="label" for="current-password">Current password</label>
+    <input class="input" id="current-password" type="password" autocomplete="current-password" required>
+    <label class="label" for="new-password" style="margin-top:12px">New password (16+ characters, upper/lowercase + number)</label>
+    <input class="input" id="new-password" type="password" autocomplete="new-password" minlength="16" maxlength="128" required>
+    <label class="label" for="confirm-password" style="margin-top:12px">Confirm new password</label>
+    <input class="input" id="confirm-password" type="password" autocomplete="new-password" minlength="16" maxlength="128" required>
+    <div class="row" style="margin-top:14px"><button class="btn soft" type="submit" id="change-password-btn">Update password</button></div>
+  </form>
+  <p id="password-status" class="status" aria-live="polite"></p>
+ </section>
  <div class="sticky"><div class="row between bottom"><span id="dirty" class="status">All changes saved.</span><button id="save" class="btn" type="button">Save prices →</button></div></div>
 </section>
 </main>
@@ -107,6 +121,17 @@ $('save').addEventListener('click',async()=>{
   published=!!data.published;dirty=false;$('dirty').textContent='All changes saved.';status('save-status','Prices saved! Customer website will show the update on refresh.','good');render();
  }catch(e){status('save-status',e.message,'error');}
  finally{busy=false;$('save').disabled=false;}
+});
+$('change-password-form').addEventListener('submit',async e=>{
+ e.preventDefault();if(busy)return;
+ if(dirty&&!confirm('You have unsaved price edits. Changing password will log you out. Continue?'))return;
+ const current=$('current-password').value,newPass=$('new-password').value;
+ if(newPass!==$('confirm-password').value){status('password-status','New passwords do not match.','error');return;}
+ busy=true;$('change-password-btn').disabled=true;status('password-status','Changing owner password…');
+ try{await api('change-password',{method:'POST',body:JSON.stringify({currentPassword:current,newPassword:newPass})});
+  $('change-password-form').reset();dirty=false;await enter();status('login-status','Password updated. Log in with your new password.','good');
+ }catch(error){status('password-status',error.message,'error');}
+ finally{busy=false;$('change-password-btn').disabled=false;}
 });
 $('logout').addEventListener('click',async()=>{if(dirty&&!confirm('You have unsaved changes. Sign out anyway?'))return;try{await api('logout',{method:'POST',body:'{}'});}catch(_e){}$('login-view').classList.remove('hidden');$('dashboard').classList.add('hidden');status('login-status','You are signed out.');});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
