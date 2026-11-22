@@ -10,8 +10,8 @@ A mobile-friendly static website with ironing and dry-cleaning price lists, inst
 
 ## Owner Price Manager
 
-- Owner page: https://sirsi-dryclean.pages.dev/owner/
-- Owner login: password-protected with HTTP-only, Secure, SameSite=Strict sessions. No demo credentials in code.
+- Admin login (free): https://sirsi-dryclean.pages.dev/admin/ (legacy owner URL still supported: https://sirsi-dryclean.pages.dev/owner/)
+- Admin login: password-protected with HTTP-only, Secure, SameSite=Strict sessions. No demo credentials in code.
 - First owner password hash: Cloudflare Pages secret `OWNER_PASSWORD_HASH`. Share the initial password only with the shop owner, who can change it after login.
 - Owner can **add, edit, remove garments** and update **Ironing** and **Dry Cleaning** prices and item units.
 - Tap **Save prices** to store changes in Cloudflare D1. Visitors see new prices from `/api/prices` on refresh; no redeploy required.
@@ -47,7 +47,7 @@ Note: GitHub account/organization policies may affect free Pages availability. T
 
 ## Editing
 
-Customer website code is in `index.html`; owner page is in `owner/index.html`; server endpoints are in `functions/`. Live prices are stored in D1. No installation needed. Phone button uses `tel:+917219909630` and WhatsApp uses `https://wa.me/917219909630`.
+Customer website code is in `index.html`; admin page is in `admin/index.html` (legacy owner page is in `owner/index.html`); server endpoints are in `functions/`. Live prices are stored in D1. No installation needed. Phone button uses `tel:+917219909630` and WhatsApp uses `https://wa.me/917219909630`.
 
 ## Booking behavior
 
