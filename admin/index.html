@@ -7,6 +7,16 @@
 <style>
 :root{--bg:#f5f7f5;--ink:#12363b;--deep:#0c343a;--mint:#d4f5e7;--line:#dbe6df;--soft:#eaf4ee;--muted:#547471;--danger:#ac3542}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif}button,input,select{font:inherit}a{color:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #448c7b;outline-offset:2px}.wrap{width:min(100% - 32px,980px);margin:auto}header{background:var(--deep);color:#fff;padding:18px 0}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.logo{font-weight:900;letter-spacing:.04em}.logo span{display:block;letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:var(--mint);margin-top:4px}.top a{font-size:13px;color:var(--mint);text-decoration:none}main{padding:34px 0 90px}.card{background:#fff;border:1px solid var(--line);box-shadow:0 10px 32px #12363b0d;border-radius:22px;padding:25px;margin-bottom:18px}h1{font-size:clamp(27px,4vw,38px);line-height:1.08;letter-spacing:-.045em;margin:4px 0 12px}h2{font-size:21px;letter-spacing:-.04em;margin:0 0 10px}p{line-height:1.6;color:var(--muted)}.sub{margin:0 0 22px}.label{display:block;font-weight:750;font-size:13px;margin:0 0 9px}.input{background:white;width:100%;border:1px solid #bfd6cd;border-radius:11px;padding:13px 14px;color:var(--ink);min-width:0}.input:focus{border-color:#438a73}.btn{border:0;background:var(--deep);color:#fff;border-radius:12px;padding:13px 18px;font-weight:800;min-height:46px}.btn:disabled{opacity:.55;cursor:wait}.btn.soft{background:var(--soft);color:var(--deep)}.btn.danger{background:#fff0f0;color:var(--danger);border:1px solid #f4d7d7}.btn.small{padding:9px 11px;min-height:40px;font-size:13px}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>*{max-width:100%}.between{justify-content:space-between}.status{font-size:13px;min-height:26px;color:var(--muted);font-weight:650}.status.error{color:var(--danger)}.status.good{color:#17705a}.tabs{display:flex;gap:8px;padding:5px;border-radius:14px;background:var(--soft);width:max-content;max-width:100%;margin:24px 0 16px}.tab{background:transparent;border:0;padding:10px 15px;border-radius:11px;font-weight:750;color:#3c7064}.tab[aria-selected=true]{background:var(--deep);color:white}.items{display:grid;gap:13px}.item{border:1px solid var(--line);border-radius:16px;padding:16px;background:white}.item-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.item-title{font-size:15px;font-weight:800}.fields{display:grid;grid-template-columns:2fr 1fr 1.6fr;gap:10px}.fields label{font-size:11px;font-weight:750;color:#486c65;display:block;margin-bottom:5px}.field-block{min-width:0}.field-block .input{font-size:14px}.delete{background:#fff1f1;color:var(--danger);border:1px solid #f1cdcd;border-radius:9px;padding:9px 12px;font-weight:750}.switcher{display:flex;align-items:start;gap:12px;padding:15px;border-radius:13px;background:#f5f8f5;border:1px solid var(--line)}.switcher input{width:20px;height:20px;accent-color:#186453;margin:2px 0}.switcher b{display:block;font-size:14px}.switcher small{color:var(--muted);line-height:1.6;display:block;margin-top:5px}.sticky{position:sticky;bottom:0;background:#f5f7f5ed;backdrop-filter:blur(8px);padding:12px 0;border-top:1px solid var(--line);z-index:5}.hint{background:#fff6e9;border:1px solid #efdbb5;border-radius:13px;padding:13px 16px;color:#85562b;font-size:13px;line-height:1.6}.muted{font-size:13px}.hidden{display:none!important}@media(max-width:600px){.card{padding:19px}.fields{grid-template-columns:1fr 1fr}.fields>.field-block:first-child{grid-column:1/-1}.btn{width:auto}.toolbar{gap:10px}.toolbar .btn{flex:1}.row.bottom .btn{flex:1}.item{padding:13px}main{padding:26px 0 70px}}
+
+/* Admin catalog tools */
+.tabs{overflow-x:auto;scrollbar-width:none;max-width:100%;white-space:nowrap}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto}
+.admin-search{width:100%;margin:14px 0 10px}
+.admin-count{display:block;font-size:12px;color:#608077;font-weight:700;margin-bottom:13px}
+.quick-preview{color:#286d5b;font-size:12px;font-weight:750;text-decoration:none}
+.quick-preview:hover{text-decoration:underline}
+@media(max-width:600px){.tabs{width:100%}.admin-search{margin:10px 0}.tab{padding:10px 12px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -26,11 +36,14 @@
 <section id="dashboard" class="hidden">
  <div class="row between" style="margin-bottom:19px"><div><h1>Admin Dashboard</h1><p class="sub">Har kapde ka rate badlein, naya product add karein, ya delete karein.</p></div><button type="button" class="btn soft small" id="logout">Log out</button></div>
  <div class="hint">Pehle se dikhne wale ₹ rates <strong>sample/demo</strong> hain. Har rate sahi karke hi “Verified” enable karein. Change karne ke baad <strong>Save prices</strong> dabana zaroori hai.</div>
- <div class="tabs" role="tablist" aria-label="Select service"><button type="button" class="tab" data-tab="iron" aria-selected="true">♨ Ironing</button><button type="button" class="tab" data-tab="dry" aria-selected="false">✧ Dry Cleaning</button></div>
+ <div class="tabs" role="tablist" aria-label="Select service"><button type="button" class="tab" data-tab="iron" aria-selected="true">♨ Ironing</button><button type="button" class="tab" data-tab="dry" aria-selected="false">✧ Dry Cleaning</button><button type="button" class="tab" data-tab="wash" aria-selected="false">🧺 Laundry / Wash</button><button type="button" class="tab" data-tab="other" aria-selected="false">✨ Other Care</button></div>
  <section class="card">
-  <div class="row between toolbar"><h2 id="category-heading">Ironing prices</h2><button type="button" class="btn soft small" id="add-item">+ Add garment</button></div>
+  <div class="row between toolbar"><h2 id="category-heading">Ironing prices</h2><div class="row"><a href="/#prices" target="_blank" rel="noopener noreferrer" class="quick-preview">Preview customer prices ↗</a><button type="button" class="btn soft small" id="add-item">+ Add product</button></div></div>
+  <input type="search" class="input admin-search" id="admin-search" placeholder="Search products within this service…" autocomplete="off" aria-label="Search products in selected category">
+  <span class="admin-count" id="admin-count">Loading items…</span>
   <div id="items" class="items"></div>
-  <p class="muted">Har rate Indian Rupees (₹) mein hai. Per piece / per set bhi edit kar sakte hain.</p>
+  <datalist id="unit-options"><option value="Per piece"><option value="Per set"><option value="Per kg"><option value="Per pair"><option value="Per curtain"><option value="Per blanket"></datalist>
+  <p class="muted">Har product ka rate ₹ mein set karein. Unit (Per piece, Per kg, Per set) aur service category admin ke control mein hain. Customer website quantity × rate se total banayegi.</p>
  </section>
  <section class="card">
   <h2>Publish price list</h2>
@@ -57,19 +70,24 @@
 <script>
 'use strict';
 let items=[],published=false,active='iron',dirty=false,busy=false;
+const CATEGORIES={iron:'Ironing / Press',dry:'Dry Cleaning',wash:'Laundry / Wash',other:'Other Care'};
+const KEYS=Object.keys(CATEGORIES);
 const $=id=>document.getElementById(id);
 function status(id,msg,kind=''){const e=$(id);e.textContent=msg;e.className='status '+kind;}
 function setDirty(){dirty=true;$('dirty').textContent='Unsaved changes';}
 function element(tag,attrs={},text){const e=document.createElement(tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(text!==undefined)e.textContent=text;return e;}
 function field(item,key,type,opts={}){const div=element('div',{class:'field-block'});const label=element('label',{},opts.label||key);const inp=element('input',{class:'input',type,inputmode:type==='number'?'numeric':'text',maxlength:key==='name'?70:70},item[key]===undefined?'':undefined);
-inp.value=item[key];if(type==='number'){inp.min='0';inp.max='100000';inp.step='1';}
+inp.value=item[key];if(key==='detail')inp.setAttribute('list','unit-options');if(type==='number'){inp.min='0';inp.max='100000';inp.step='1';}
 inp.addEventListener('input',()=>{item[key]=type==='number'?Number(inp.value):inp.value;setDirty();});
 label.append(inp);div.append(label);return div;}
 function render(){
  for(const b of document.querySelectorAll('[data-tab]'))b.setAttribute('aria-selected',String(b.dataset.tab===active));
- $('category-heading').textContent=active==='iron'?'Ironing / Press':'Dry Cleaning';
+ $('category-heading').textContent=CATEGORIES[active]+' prices';
  const host=$('items');host.replaceChildren();
- for(const item of items.filter(i=>i.category===active)){
+ const term=$('admin-search').value.toLocaleLowerCase().trim();
+ const matches=items.filter(i=>i.category===active && (i.name+' '+i.detail).toLocaleLowerCase().includes(term));
+ $('admin-count').textContent=matches.length+' shown · '+items.filter(i=>i.category===active).length+' products in this service';
+ for(const item of matches){
   const card=element('div',{class:'item'}),top=element('div',{class:'item-top'});
   top.append(element('span',{class:'item-title'},item.name||'New garment'));
   const del=element('button',{type:'button',class:'delete'},'Remove');del.addEventListener('click',()=>{
@@ -93,7 +111,7 @@ async function enter(){
  try{
  const session=await api('me');
  if(!session.authenticated){$('login-view').classList.remove('hidden');$('dashboard').classList.add('hidden');return;}
- const data=await api('prices');items=[...data.prices.iron.map(x=>({...x,category:'iron'})),...data.prices.dry.map(x=>({...x,category:'dry'}))];published=!!data.published;dirty=false;active='iron';
+ const data=await api('prices');items=KEYS.flatMap(k=>(data.prices[k]||[]).map(x=>({...x,category:k})));published=!!data.published;dirty=false;active='iron';
  $('login-view').classList.add('hidden');$('dashboard').classList.remove('hidden');render();$('dirty').textContent='All changes saved.';status('save-status','');
  }catch(e){$('login-view').classList.remove('hidden');$('dashboard').classList.add('hidden');status('login-status',e.message,'error');}
 }
@@ -103,11 +121,13 @@ $('login-form').addEventListener('submit',async(e)=>{
  catch(e){status('login-status',e.message,'error');}
  finally{busy=false;$('login-btn').disabled=false;}
 });
-document.querySelectorAll('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{active=tab.dataset.tab;render()}));
+document.querySelectorAll('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{active=tab.dataset.tab;$('admin-search').value='';render()}));
+$('admin-search').addEventListener('input',render);
 $('confirmed').addEventListener('change',e=>{published=e.target.checked;setDirty();});
 $('add-item').addEventListener('click',()=>{
  if(items.length>=120){status('save-status','Maximum 120 products.','error');return;}
- items.push({id:'item-'+crypto.randomUUID(),category:active,name:'New garment',price:0,detail:'Per piece'});setDirty();render();
+ $('admin-search').value='';
+ items.push({id:'item-'+crypto.randomUUID(),category:active,name:'New product',price:0,detail:'Per piece'});setDirty();render();
  const nodes=$('items').querySelectorAll('.item');nodes[nodes.length-1]?.scrollIntoView({behavior:'smooth',block:'center'});
 });
 $('save').addEventListener('click',async()=>{
@@ -117,7 +137,7 @@ $('save').addEventListener('click',async()=>{
  busy=true;$('save').disabled=true;status('save-status','Saving prices to shop database…');
  try{
   const data=await api('prices',{method:'PUT',body:JSON.stringify({items:cleaned,published})});
-  items=[...data.prices.iron.map(x=>({...x,category:'iron'})),...data.prices.dry.map(x=>({...x,category:'dry'}))];
+  items=KEYS.flatMap(k=>(data.prices[k]||[]).map(x=>({...x,category:k})));
   published=!!data.published;dirty=false;$('dirty').textContent='All changes saved.';status('save-status','Prices saved! Customer website will show the update on refresh.','good');render();
  }catch(e){status('save-status',e.message,'error');}
  finally{busy=false;$('save').disabled=false;}
