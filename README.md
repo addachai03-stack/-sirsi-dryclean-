@@ -2,6 +2,27 @@
 
 A mobile-friendly static website with ironing and dry-cleaning price lists, instant demo estimate, Call and WhatsApp buttons. No paid services, account sign-up, build tools, or backend needed.
 
+
+## Customer service basket (2026 upgrade)
+
+- Browse **All Services / Ironing / Dry Cleaning / Laundry / Other Care** and search products.
+- Every product displays its owner-managed **₹ unit price** and **unit** (per piece / set / kg). Customers can select **0–99 quantity** per product.
+- Cart shows each line **quantity × current rate** and a combined subtotal. Basket quantity is retained only in that browser session.
+- Optional customer name, contact number, enquiry preference, special instructions and **unlisted/custom service** request.
+- WhatsApp message includes itemized category, name, quantity, unit rate, line totals, subtotal and custom request. WhatsApp is opened for the **customer to review and send**; the site does not send messages automatically or create confirmed bookings.
+- Before opening WhatsApp, the site **re-checks latest prices**. If an owner changed an item, the customer must review the revised basket and tap again.
+- Demo prices remain clearly labeled until owner verifies them. Unlisted-service prices are **not invented** or added to totals.
+- No online payments, no invented pickup promise, no customer personal data stored in the website's database.
+
+### Admin setup
+
+1. Visit https://sirsi-dryclean.pages.dev/admin/ and sign in with the existing owner password.
+2. Choose **Ironing**, **Dry Cleaning**, **Laundry / Wash** or **Other Care**.
+3. Add/edit any garment or service with a **₹ price** and unit (`Per piece`, `Per set`, `Per kg`, etc.). Search existing products if needed.
+4. Tap **Save prices →**. The public `/api/prices` endpoint updates without a code change.
+5. After all prices are checked, enable **Verified rates** and save. Otherwise the customer page says *demo/sample*.
+6. Do not re-use old URL `/owner/`; it redirects to the updated `/admin/`.
+
 ## Shop details
 
 - **Name:** Sirsi Dryclean
@@ -13,7 +34,7 @@ A mobile-friendly static website with ironing and dry-cleaning price lists, inst
 - Admin login (free): https://sirsi-dryclean.pages.dev/admin/ (legacy owner URL still supported: https://sirsi-dryclean.pages.dev/owner/)
 - Admin login: password-protected with HTTP-only, Secure, SameSite=Strict sessions. No demo credentials in code.
 - First owner password hash: Cloudflare Pages secret `OWNER_PASSWORD_HASH`. Share the initial password only with the shop owner, who can change it after login.
-- Owner can **add, edit, remove garments** and update **Ironing** and **Dry Cleaning** prices and item units.
+- Owner can **add, edit, remove garments** in **Ironing**, **Dry Cleaning**, **Laundry / Wash** and **Other Care**, including price per unit.
 - Tap **Save prices** to store changes in Cloudflare D1. Visitors see new prices from `/api/prices` on refresh; no redeploy required.
 - Public price list starts in **demo mode**. After checking every rate, select **Verified rates** and save to publish the verified-price label.
 - Owner can change the login password; this invalidates all existing sessions.
