@@ -11,7 +11,9 @@ export async function onRequestPost({env,request}){
     const prior=await env.PRICE_DB.prepare('SELECT failures,reset_at FROM login_attempts WHERE ip_hash=?').bind(ipHash).first();
     if(prior && prior.reset_at>now && prior.failures>=8)return json({error:'Too many attempts. Try after 15 minutes.'},429);
     const supplied=await sha256(body.password);
-    if(!equalFixed(supplied,env.OWNER_PASSWORD_HASH)){
+    const override=await env.PRICE_DB.prepare("SELECT value FROM shop_settings WHERE key='owner_password_hash'").first();
+    const currentHash=override?.value||env.OWNER_PASSWORD_HASH;
+    if(!equalFixed(supplied,currentHash)){
       await env.PRICE_DB.prepare('INSERT INTO login_attempts(ip_hash,failures,reset_at) VALUES(?,1,?) ON CONFLICT(ip_hash) DO UPDATE SET failures=CASE WHEN reset_at <= ? THEN 1 ELSE failures + 1 END, reset_at=CASE WHEN reset_at <= ? THEN excluded.reset_at ELSE reset_at END').bind(ipHash,now+900,now,now).run();
       return json({error:'Invalid credentials'},401);
     }
