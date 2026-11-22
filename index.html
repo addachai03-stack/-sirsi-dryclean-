@@ -78,7 +78,7 @@
     <section class="pricing" id="prices">
       <div class="container">
         <div class="section-head rate-header"><div><div class="kicker">Simple pricing</div><h2>Price list & estimate.</h2></div><p>Garment select karke quantity add karein, phir WhatsApp par message bhejein.</p></div>
-        <div class="rate-note" role="note"><span aria-hidden="true">ⓘ</span><span><b>Sample prices only:</b> Ye demo rates hain, shop ke confirmed rates nahi. Final price aur availability phone/WhatsApp par confirm karein.</span></div>
+        <div class="rate-note" id="rate-note" role="note"><span aria-hidden="true">ⓘ</span><span><b>Sample prices only:</b> Ye demo rates hain, shop ke confirmed rates nahi. Final price aur availability phone/WhatsApp par confirm karein.</span></div>
         <div class="tabs" role="tablist" aria-label="Service category">
           <button class="tab" id="tab-iron" role="tab" aria-selected="true" aria-controls="price-list" data-tab="iron">Ironing / Press</button>
           <button class="tab" id="tab-dry" role="tab" aria-selected="false" aria-controls="price-list" data-tab="dry">Dry Cleaning</button>
@@ -86,7 +86,7 @@
         <div class="price-grid" id="price-list" role="tabpanel" aria-labelledby="tab-iron" aria-live="polite"></div>
         <div class="quote" aria-live="polite">
           <div><h3>Your estimated total</h3><p id="quote-detail">Select garments to get an estimate.</p></div>
-          <div class="quote-total"><small>Demo estimate</small><strong id="quote-total">₹0</strong></div>
+          <div class="quote-total"><small id="estimate-label">Demo estimate</small><strong id="quote-total">₹0</strong></div>
           <button class="btn btn-primary" type="button" id="quote-send" disabled>Send on WhatsApp ↗</button>
         </div>
       </div>
@@ -101,12 +101,12 @@
       <div class="container contact-wrap"><div><div class="kicker">Get in touch</div><h2>Ready for a fresh finish?</h2><p>Phone ya WhatsApp par Sirsi Dryclean se directly baat karein.</p></div><div class="contact-buttons"><a href="tel:+917219909630" class="btn btn-secondary">☎ Call +91 72199 09630</a><a href="https://wa.me/917219909630?text=Namaste%20Sirsi%20Dryclean%2C%20mujhe%20price%20aur%20service%20details%20chahiye." target="_blank" rel="noopener noreferrer" class="btn btn-primary">WhatsApp ↗</a></div></div>
     </section>
   </main>
-  <footer><div class="container foot"><span><strong>Sirsi Dryclean</strong> · Ironing & Dry Cleaning</span><span>Made for easy enquiries · <a href="tel:+917219909630">+91 72199 09630</a></span></div></footer>
+  <footer><div class="container foot"><span><strong>Sirsi Dryclean</strong> · Ironing & Dry Cleaning</span><span>Made for easy enquiries · <a href="tel:+917219909630">+91 72199 09630</a> · <a href="/owner/">Owner</a></span></div></footer>
   <a class="floating-wa" aria-label="Chat on WhatsApp" href="https://wa.me/917219909630?text=Namaste%20Sirsi%20Dryclean%21" target="_blank" rel="noopener noreferrer">◉ &nbsp; WhatsApp</a>
   <script>
     // IMPORTANT: DEMO prices. Replace with shop-confirmed rates before going public.
     // All rates are INR per garment unless otherwise stated.
-    const PRICES = {
+    let PRICES = {
       iron: [
         { id: 'iron-shirt', name: 'Shirt', price: 10, detail: 'Per piece · demo' },
         { id: 'iron-pant', name: 'Pant / Trouser', price: 15, detail: 'Per piece · demo' },
@@ -129,7 +129,8 @@
     const priceList = document.getElementById('price-list');
     const sendButton = document.getElementById('quote-send');
     const tabs = [...document.querySelectorAll('[data-tab]')];
-    const allItems = [...PRICES.iron, ...PRICES.dry];
+    let allItems = [...PRICES.iron.map(i=>({...i,category:'iron'})),...PRICES.dry.map(i=>({...i,category:'dry'}))];
+    let published=false;
     const amount = n => `₹${n.toLocaleString('en-IN')}`;
     function renderPrices(){
       priceList.replaceChildren();
@@ -167,12 +168,37 @@
     });
     sendButton.addEventListener('click',()=>{
       const chosen=allItems.filter(item=>selection[item.id]>0);if(!chosen.length)return;
-      const lines=chosen.map(item=>`${item.id.startsWith('iron')?'Iron':'Dry Clean'} - ${item.name} x ${selection[item.id]} = ${amount(item.price*selection[item.id])}`);
+      const lines=chosen.map(item=>`${item.category==='iron'?'Iron':'Dry Clean'} - ${item.name} x ${selection[item.id]} = ${amount(item.price*selection[item.id])}`);
       const total=chosen.reduce((sum,item)=>sum+item.price*selection[item.id],0);
-      const msg=`Namaste Sirsi Dryclean!\n\nMujhe in garments ke liye enquiry karni hai:\n${lines.join('\n')}\n\nDemo estimate: ${amount(total)}\nKripya final rate, availability aur process confirm karein.\n(Website par prices sample hain.)`;
+      const msg=`Namaste Sirsi Dryclean!\n\nMujhe in garments ke liye enquiry karni hai:\n${lines.join('\n')}\n\n${published?'Shop-listed':'Demo'} estimate: ${amount(total)}\nKripya final rate, availability aur process confirm karein.\n${published?'':'(Website par prices sample hain.)'}`;
       window.open(`https://wa.me/917219909630?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer');
     });
-    renderPrices();renderQuote();
+    async function loadShopPrices(){
+      try{
+        const res=await fetch('/api/prices',{cache:'no-store'});
+        if(!res.ok)throw new Error('Pricing unavailable');
+        const data=await res.json();
+        if(!Array.isArray(data?.prices?.iron)||!Array.isArray(data?.prices?.dry))throw new Error('Invalid pricing data');
+        PRICES={iron:data.prices.iron.map(i=>({...i,detail:i.detail+(data.published?'':' · demo')})),
+                dry:data.prices.dry.map(i=>({...i,detail:i.detail+(data.published?'':' · demo')}))};
+        published=!!data.published;
+        allItems=[...PRICES.iron.map(i=>({...i,category:'iron'})),...PRICES.dry.map(i=>({...i,category:'dry'}))];
+        const ids=new Set(allItems.map(i=>i.id));
+        for(const id of Object.keys(selection))if(!ids.has(id))delete selection[id];
+        const note=document.getElementById('rate-note');
+        if(published){
+          note.style.background='#e6f7ed';note.style.borderColor='#c4e7d4';note.style.color='#205e46';
+          note.querySelector('span:last-child').textContent='Shop-listed rates: Owner ne price list update aur verify ki hai. Special fabric ka final rate shop se confirm karein.';
+        }else{
+          note.querySelector('span:last-child').textContent='Sample prices only: Ye demo rates hain, shop ke confirmed rates nahi. Final price phone/WhatsApp par confirm karein.';
+        }
+        document.getElementById('estimate-label').textContent=published?'Shop-listed estimate':'Demo estimate';
+        renderPrices();renderQuote();
+      }catch(_error){
+        document.getElementById('rate-note').querySelector('span:last-child').textContent='Rates could not be loaded. Ye sirf demo rates hain. Kripya shop se final prices confirm karein.';
+      }
+    }
+    renderPrices();renderQuote();loadShopPrices();
   </script>
 </body>
 </html>
