@@ -8,9 +8,23 @@ A mobile-friendly static website with ironing and dry-cleaning price lists, inst
 - **Contact:** +91 72199 09630
 - **WhatsApp:** https://wa.me/917219909630
 
+## Owner Price Manager
+
+- Owner page: https://sirsi-dryclean.pages.dev/owner/
+- Owner login: password-protected with HTTP-only, Secure, SameSite=Strict sessions. No demo credentials in code.
+- First owner password hash: Cloudflare Pages secret `OWNER_PASSWORD_HASH`. Share the initial password only with the shop owner, who can change it after login.
+- Owner can **add, edit, remove garments** and update **Ironing** and **Dry Cleaning** prices and item units.
+- Tap **Save prices** to store changes in Cloudflare D1. Visitors see new prices from `/api/prices` on refresh; no redeploy required.
+- Public price list starts in **demo mode**. After checking every rate, select **Verified rates** and save to publish the verified-price label.
+- Owner can change the login password; this invalidates all existing sessions.
+- API endpoints: public `GET /api/prices`; private `GET/PUT /api/admin/prices`; login, logout, login status, password rotation.
+- Database: `sirsi-dryclean-prices`, binding `PRICE_DB` (production and preview).
+
+**Important:** Do not share the owner password publicly. Prices are shop-maintained information and actual service availability is confirmed on WhatsApp or phone.
+
 ## IMPORTANT: Replace sample prices before publishing
 
-The garment rates in `index.html` are **demo placeholders, not verified shop prices**. Search for `const PRICES = {` near the end of `index.html`. Edit each `price:` number with your real rates. After shop rates are verified, you may remove the highlighted demo price notice and change `demo` labels as appropriate.
+The garment rates in `index.html` are **demo placeholders, not verified shop prices**. Sign in to **Owner Price Manager** to edit each rate. Public price data comes from D1, not the static fallback in `index.html`. Do not edit static fallback rates as the primary mechanism. After shop rates are verified, you may remove the highlighted demo price notice and change `demo` labels as appropriate.
 
 No store address, hours, pickup, or delivery commitment is shown because those details have not been provided.
 
@@ -33,7 +47,7 @@ Note: GitHub account/organization policies may affect free Pages availability. T
 
 ## Editing
 
-All design, price-list, and interaction code is contained in `index.html`. No installation needed. Phone button uses `tel:+917219909630` and WhatsApp uses `https://wa.me/917219909630`.
+Customer website code is in `index.html`; owner page is in `owner/index.html`; server endpoints are in `functions/`. Live prices are stored in D1. No installation needed. Phone button uses `tel:+917219909630` and WhatsApp uses `https://wa.me/917219909630`.
 
 ## Booking behavior
 
