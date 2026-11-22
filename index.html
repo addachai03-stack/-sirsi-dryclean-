@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b333b" />
-  <meta name="description" content="Sirsi Dryclean — ironing and dry cleaning services. See sample prices and enquire on WhatsApp or call +91 72199 09630." />
+  <meta name="description" content="Sirsi Dryclean — ironing, dry cleaning, laundry and special care. Choose garment quantity, calculate item-wise estimate and enquire directly on WhatsApp at +91 72199 09630." />
   <meta property="og:title" content="Sirsi Dryclean | Fresh look, expert care" />
-  <meta property="og:description" content="Ironing & dry cleaning. View sample rates and enquire directly on WhatsApp." />
-  <title>Sirsi Dryclean | Ironing & Dry Cleaning</title>
+  <meta property="og:description" content="Explore garment services, select quantity and send an itemized WhatsApp enquiry." />
+  <title>Sirsi Dryclean | Ironing, Laundry & Dry Cleaning Price List</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <style>
     :root{--ink:#12353a;--deep:#0c343a;--dark:#082930;--cream:#f8f7f2;--mist:#e9f3ef;--line:#dce8e2;--mint:#bcecd7;--sage:#458879;--orange:#f2aa6a;--muted:#607a7b;--white:#fff;--shadow:0 15px 60px rgba(13,53,59,.08)}
@@ -25,6 +25,104 @@
     @media(max-width:930px){.hero-content{grid-template-columns:1fr 0.8fr}.hero h1{font-size:59px}.hero-art{min-height:340px}.service-grid,.price-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:680px){.container{width:min(100% - 32px,520px)}.notice{font-size:11px;line-height:1.5}.nav{min-height:75px}.brand{font-size:17px}.brand-mark{width:40px;height:40px}.navlinks>a:not(.nav-call){display:none}.nav-call{font-size:12px;padding:11px 14px}.hero-content{grid-template-columns:1fr;gap:0;padding:54px 0 48px}.hero h1{font-size:clamp(46px,12.3vw,69px);margin:19px 0}.hero p{font-size:15px;margin-bottom:27px}.hero-art{min-height:270px;margin-top:20px}.hero-svg{width:min(82%,350px)}.hero-art:before{inset:6% 15%}.art-stamp{bottom:0;left:5%;padding:11px 13px}.hero-proof{margin-top:24px;gap:12px}.strip-content{gap:12px;font-size:11px}.strip i{font-size:14px}.services,.pricing,.how{padding:65px 0}.section-head{display:block;margin-bottom:23px}.section-head h2{margin-bottom:13px}.section-head p{font-size:14px}.service-grid,.price-grid,.steps{grid-template-columns:1fr}.service-grid{gap:12px}.service{padding:25px}.service-icon{margin-bottom:16px}.price-grid{gap:10px}.price-card{min-height:82px}.quote{padding:23px 20px}.quote-total{margin-left:0;text-align:left}.quote .btn{width:100%}.contact{padding:56px 0 74px}.contact-wrap{display:block}.contact p{margin-bottom:25px}.contact-buttons{display:flex}.contact-buttons .btn{flex:1}.foot{padding-bottom:42px}.floating-wa{right:12px;bottom:12px;padding:12px 15px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+    /* Sirsi Care Basket: clear per-service pricing and mobile-first checkout */
+    .pricing{padding:88px 0 98px;background:#edf3ed}
+    .pricing .rate-note{margin-bottom:22px}
+    .catalog-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin:22px 0 14px}
+    .catalog-tabs{display:flex;flex-wrap:wrap;gap:7px}
+    .catalog-tab{border:1px solid #d4e2db;background:#fff;color:#42675e;padding:11px 16px;border-radius:999px;font-size:13px;font-weight:780;white-space:nowrap}
+    .catalog-tab[aria-selected="true"]{background:var(--deep);color:#fff;border-color:var(--deep);box-shadow:0 7px 17px #0b343a20}
+    .catalog-tab:hover:not([aria-selected="true"]){border-color:#7cae9a;background:#f7fffb}
+    .catalog-search{height:46px;min-width:220px;max-width:100%;display:flex;align-items:center;gap:9px;border:1px solid #d7e5db;background:#fff;border-radius:13px;padding:0 14px;color:#518273}
+    .catalog-search input{outline:none!important;border:0;background:transparent;min-width:0;width:100%;font-size:14px;color:var(--ink)}
+    .catalog-search:focus-within{border-color:#518f79;box-shadow:0 0 0 3px #bcecd755}
+    .catalog-meta{font-size:12px;color:#68867d;font-weight:650;margin:0 0 14px}
+    .pricing .price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .pricing .price-card{display:flex;align-items:stretch;flex-direction:column;justify-content:space-between;border:1px solid #d9e8e0;min-height:201px;padding:20px;border-radius:18px;background:#fff;transition:box-shadow .2s,border-color .2s,transform .2s}
+    .pricing .price-card[data-selected="true"]{border-color:#5f9f82;box-shadow:0 0 0 2px #bcecd777,0 12px 30px #204d3a10}
+    .pricing .price-card:hover{transform:translateY(-2px);box-shadow:0 10px 30px #173e3512}
+    .product-head{display:flex;align-items:flex-start;gap:11px}
+    .product-icon{width:46px;height:46px;display:grid;place-items:center;flex:0 0 auto;border-radius:13px;background:#eaf6ef;font-size:24px}
+    .product-main{min-width:0;flex:1}
+    .product-main h3{font-size:16px;font-weight:800;margin:2px 0 6px;line-height:1.3;letter-spacing:-.018em}
+    .product-main small{display:block;color:#6c8780;font-size:11px;line-height:1.5}
+    .product-price-line{display:flex;align-items:end;justify-content:space-between;gap:9px;margin-top:19px}
+    .product-price{font-size:27px;letter-spacing:-.055em;font-weight:860;color:#0d383d;line-height:1}
+    .product-price small{display:block;font-size:11px;color:#6f8a80;letter-spacing:0;font-weight:600;margin-top:6px}
+    .qty-control{display:flex;align-items:center;gap:0;border:1px solid #d6e5dc;border-radius:12px;overflow:hidden;height:42px;background:#f7fbf8}
+    .qty-btn{width:40px;height:40px;border:0;background:#f0f8f3;color:#134840;font-size:22px;font-weight:700;display:grid;place-items:center;line-height:1}
+    .qty-btn:disabled{opacity:.35;cursor:default}
+    .qty-btn:hover:not(:disabled){background:#d4f5e7}
+    .qty-input{width:40px;height:40px;border:0;border-inline:1px solid #e2eae5;background:white;text-align:center;color:#163a38;font-size:14px;font-weight:800;appearance:textfield;-moz-appearance:textfield;padding:0}
+    .qty-input::-webkit-inner-spin-button,.qty-input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+    .product-tag{align-self:flex-start;padding:5px 9px;border-radius:7px;background:#edf6ee;color:#397566;font-size:10px;font-weight:760;letter-spacing:.025em;margin-top:2px}
+    .catalog-empty{border-radius:17px;padding:40px 20px;border:1px dashed #b9d2c2;background:#fff;text-align:center}
+    .catalog-empty h3{font-size:20px;margin:0 0 8px}.catalog-empty p{font-size:14px;color:#6b857f;margin:0 auto 15px;max-width:490px}
+    .catalog-empty[hidden]{display:none}
+    .basket{margin-top:34px;background:#fff;border:1px solid #d9e7de;border-radius:24px;box-shadow:0 16px 48px #2041380c;overflow:hidden}
+    .basket-header{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:24px 27px;border-bottom:1px solid #e7eee8}
+    .basket-header .kicker{margin-bottom:9px}.basket-header h3{font-size:26px;letter-spacing:-.045em;margin:0}
+    .count-pill{display:inline-block;vertical-align:middle;background:#e4f6e9;color:#17664d;font-size:13px;font-weight:780;padding:5px 10px;border-radius:20px;letter-spacing:0;margin-left:7px}
+    .clear-btn{border:1px solid #d9e8df;background:#fff;border-radius:10px;padding:10px 13px;color:#496f65;font-size:12px;font-weight:730}
+    .clear-btn:hover:not(:disabled){background:#faf0ed;color:#af4c39}.clear-btn:disabled{opacity:.4;cursor:default}
+    .basket-items{padding:7px 27px}
+    .basket-empty{padding:27px 0;color:#78938b;font-size:14px;text-align:center}
+    .basket-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:20px;padding:13px 0;border-bottom:1px solid #edf2ee}
+    .basket-row:last-child{border-bottom:0}
+    .basket-item-title{font-size:14px;font-weight:790;margin-bottom:3px}.basket-item-detail{font-size:11px;color:#78938b}
+    .basket-row .qty-control{height:36px}.basket-row .qty-btn,.basket-row .qty-input{height:34px}.basket-row .qty-btn{width:34px;font-size:18px}.basket-row .qty-input{width:34px}
+    .basket-line-price{font-size:15px;font-weight:830;text-align:right;white-space:nowrap;min-width:70px}
+    .checkout-layout{display:grid;grid-template-columns:1.06fr .94fr;border-top:1px solid #e9eee9}
+    .checkout-fields{padding:27px;background:#f9fbf8}
+    .checkout-fields h4,.checkout-summary h4{font-size:18px;letter-spacing:-.02em;margin:0 0 5px}
+    .checkout-fields>p{font-size:12px;color:#6d8981;margin:0 0 20px;line-height:1.65}
+    .checkout-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .customer-field{display:block;font-size:12px;font-weight:740;color:#41645d}
+    .customer-field input,.customer-field textarea,.customer-field select{width:100%;margin-top:7px;border:1px solid #d7e4dc;border-radius:11px;background:#fff;font:inherit;font-size:13px;color:#163b38;padding:12px 13px;outline:none;min-height:44px}
+    .customer-field textarea{min-height:100px;resize:vertical}
+    .customer-field input:focus,.customer-field textarea:focus,.customer-field select:focus{border-color:#5b9b81;box-shadow:0 0 0 3px #bcecd755}
+    .customer-field.wide{grid-column:1/-1}
+    .customer-field small{display:block;font-weight:500;color:#718c82;margin:5px 0 0;font-size:11px}
+    .checkout-summary{background:#0c343a;color:#fff;padding:27px;display:flex;flex-direction:column}
+    .checkout-summary h4{color:#fff}.checkout-summary p{color:#c4dcd4;font-size:12px;line-height:1.65;margin:2px 0 20px}
+    .bill-row{display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:13px;color:#c5dfd5;padding:10px 0;border-bottom:1px solid #376068}
+    .bill-row strong{color:#fff}
+    .bill-total{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin:19px 0 23px}
+    .bill-total>span{font-size:13px;color:#cae5da}.bill-total strong{font-size:37px;font-weight:870;letter-spacing:-.055em;line-height:1}
+    .whatsapp-cta{border:0;background:#bcecd7;color:#103b34;border-radius:13px;padding:16px;font-size:14px;font-weight:850;min-height:53px;display:flex;align-items:center;justify-content:center;gap:9px;width:100%}
+    .whatsapp-cta:hover:not(:disabled){background:#d5f7e6}.whatsapp-cta:disabled{opacity:.53;cursor:not-allowed}
+    .checkout-summary .policy{font-size:11px;line-height:1.65;color:#bad0c9;margin:14px 0 0}
+    .checkout-status{margin-top:11px;min-height:20px;font-size:12px;color:#d4efd7;line-height:1.5}
+    .checkout-status.error{color:#ffd1bd}
+    .trust-row{display:flex;gap:13px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:17px;font-size:12px;color:#59786d;font-weight:640}
+    .mobile-cart-bar{display:none}
+    @media(max-width:1000px){.pricing .price-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){
+      .pricing{padding:64px 0 90px}
+      .catalog-toolbar{display:block}
+      .catalog-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:5px;margin-bottom:12px}
+      .catalog-tabs::-webkit-scrollbar{display:none}
+      .catalog-tab{font-size:12px;padding:10px 13px;flex-shrink:0}
+      .catalog-search{width:100%;max-width:none}
+      .pricing .price-grid{grid-template-columns:1fr;gap:11px}
+      .pricing .price-card{padding:18px;min-height:169px}
+      .product-price{font-size:24px}.product-head{gap:10px}
+      .basket{margin-top:27px;border-radius:19px}
+      .basket-header{padding:20px}.basket-header h3{font-size:23px}
+      .basket-items{padding:5px 20px}
+      .basket-row{grid-template-columns:1fr auto;gap:9px}
+      .basket-line-price{grid-column:2;text-align:right}
+      .checkout-layout{grid-template-columns:1fr}
+      .checkout-fields,.checkout-summary{padding:22px 20px}
+      .checkout-form-grid{grid-template-columns:1fr}
+      .customer-field.wide{grid-column:auto}
+      .mobile-cart-bar{position:fixed;left:11px;right:11px;bottom:10px;z-index:35;background:#0c343a;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border:1px solid #42716b;border-radius:15px;box-shadow:0 9px 34px #03292c55}
+      .mobile-cart-bar[hidden]{display:none}
+      .mobile-cart-bar a{background:#bcecd7;color:#082f2b;text-decoration:none;font-size:12px;font-weight:860;padding:10px 12px;border-radius:10px;white-space:nowrap}
+      .mobile-cart-bar strong{font-size:17px;display:block}.mobile-cart-bar small{font-size:11px;color:#c8e5da}
+      body.has-basket .floating-wa{display:none}
+    }
   </style>
 </head>
 <body>
@@ -44,8 +142,8 @@
         <div>
           <div class="eyebrow">Freshness in every fold</div>
           <h1>Fresh clothes.<br/><span>Sharp looks.</span></h1>
-          <p>From crisp everyday ironing to careful dry cleaning — your favourite clothes deserve a fresh finish. Rates dekhein aur seedha WhatsApp par enquiry bhejein.</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#prices">See Price List <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://wa.me/917219909630?text=Namaste%20Sirsi%20Dryclean%2C%20mujhe%20service%20ke%20baare%20mein%20jaankari%20chahiye." target="_blank" rel="noopener noreferrer">WhatsApp Enquiry <span aria-hidden="true">↗</span></a></div>
+          <p>From everyday ironing to careful dry cleaning, laundry and special-care requests. Apne kapde choose karein, quantity set karein, bill dekhein aur seedha WhatsApp par enquiry bhejein.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#prices">Build Your Estimate <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://wa.me/917219909630?text=Namaste%20Sirsi%20Dryclean%2C%20mujhe%20service%20ke%20baare%20mein%20jaankari%20chahiye." target="_blank" rel="noopener noreferrer">WhatsApp Enquiry <span aria-hidden="true">↗</span></a></div>
           <div class="hero-proof"><span class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m5 12 5 5L20 7"/></svg>Easy price enquiry</span><span class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m5 12 5 5L20 7"/></svg>Direct shop contact</span></div>
         </div>
         <div class="hero-art" aria-hidden="true">
@@ -75,26 +173,80 @@
         </div>
       </div>
     </section>
+
     <section class="pricing" id="prices">
       <div class="container">
-        <div class="section-head rate-header"><div><div class="kicker">Simple pricing</div><h2>Price list & estimate.</h2></div><p>Garment select karke quantity add karein, phir WhatsApp par message bhejein.</p></div>
-        <div class="rate-note" id="rate-note" role="note"><span aria-hidden="true">ⓘ</span><span><b>Sample prices only:</b> Ye demo rates hain, shop ke confirmed rates nahi. Final price aur availability phone/WhatsApp par confirm karein.</span></div>
-        <div class="tabs" role="tablist" aria-label="Service category">
-          <button class="tab" id="tab-iron" role="tab" aria-selected="true" aria-controls="price-list" data-tab="iron">Ironing / Press</button>
-          <button class="tab" id="tab-dry" role="tab" aria-selected="false" aria-controls="price-list" data-tab="dry">Dry Cleaning</button>
+        <div class="section-head rate-header">
+          <div><div class="kicker">Create your service basket</div><h2>Har kapda. Sahi quantity.<br/>Clear estimate.</h2></div>
+          <p>Ironing, dry cleaning, laundry ya special care — service choose karein, quantity set karein aur item-wise WhatsApp enquiry bhejein.</p>
         </div>
-        <div class="price-grid" id="price-list" role="tabpanel" aria-labelledby="tab-iron" aria-live="polite"></div>
-        <div class="quote" aria-live="polite">
-          <div><h3>Your estimated total</h3><p id="quote-detail">Select garments to get an estimate.</p></div>
-          <div class="quote-total"><small id="estimate-label">Demo estimate</small><strong id="quote-total">₹0</strong></div>
-          <button class="btn btn-primary" type="button" id="quote-send" disabled>Send on WhatsApp ↗</button>
+        <div class="rate-note" id="rate-note" role="status"><span aria-hidden="true">ⓘ</span><span><b>Sample prices:</b> Shop ke verified rates abhi pending hain. WhatsApp par final price confirm karein.</span></div>
+        <div class="catalog-toolbar">
+          <div class="catalog-tabs" role="tablist" aria-label="Select laundry service">
+            <button class="catalog-tab" id="cat-all" type="button" role="tab" data-category="all" aria-selected="true" aria-controls="price-list">All Services</button>
+            <button class="catalog-tab" id="cat-iron" type="button" role="tab" data-category="iron" aria-selected="false" aria-controls="price-list">♨ Ironing</button>
+            <button class="catalog-tab" id="cat-dry" type="button" role="tab" data-category="dry" aria-selected="false" aria-controls="price-list">✧ Dry Clean</button>
+            <button class="catalog-tab" id="cat-wash" type="button" role="tab" data-category="wash" aria-selected="false" aria-controls="price-list">🧺 Laundry</button>
+            <button class="catalog-tab" id="cat-other" type="button" role="tab" data-category="other" aria-selected="false" aria-controls="price-list">✨ Other Care</button>
+          </div>
+          <label class="catalog-search" for="product-search"><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Search shirt, saree, blanket…" autocomplete="off" maxlength="70" aria-label="Search garment and service"/></label>
         </div>
+        <div class="catalog-meta" id="catalog-meta" role="status">Loading latest price list…</div>
+        <div class="price-grid" id="price-list" role="tabpanel" aria-labelledby="cat-all"></div>
+        <div class="catalog-empty" id="catalog-empty" hidden>
+          <div style="font-size:32px;margin-bottom:10px" aria-hidden="true">🧺</div>
+          <h3>Product list mein nahi mila?</h3>
+          <p>Koi baat nahi. Neeche “Other service request” mein kapde ya kaam ka naam likhein. Shop WhatsApp par quote confirm karegi.</p>
+          <a class="btn btn-primary" href="#special-request">Request custom service ↗</a>
+        </div>
+        <section class="basket" id="basket" aria-label="Selected services and WhatsApp enquiry">
+          <div class="basket-header">
+            <div><div class="kicker">Your selection</div><h3>My service basket <span class="count-pill" id="basket-count">0 items</span></h3></div>
+            <button class="clear-btn" id="clear-cart" type="button" disabled>Clear basket</button>
+          </div>
+          <div class="basket-items" id="basket-lines" aria-live="polite"><p class="basket-empty">Abhi koi item select nahi kiya. Upar se plus (+) dabayein.</p></div>
+          <div class="checkout-layout">
+            <div class="checkout-fields">
+              <h4>Enquiry details</h4>
+              <p>WhatsApp par shop ko bhejne ke liye. Details optional hain; website par save nahi hongi.</p>
+              <div class="checkout-form-grid">
+                <label class="customer-field">Aapka naam (optional)<input id="customer-name" type="text" maxlength="60" autocomplete="name" placeholder="Your name"></label>
+                <label class="customer-field">Mobile number (optional)<input id="customer-phone" type="tel" inputmode="tel" maxlength="18" autocomplete="tel" placeholder="10-digit number"></label>
+                <label class="customer-field wide">Service preference
+                  <select id="service-preference">
+                    <option value="Shop drop-off / visit enquiry">Shop drop-off / visit enquiry</option>
+                    <option value="Please confirm if pickup is available">Ask about pickup availability</option>
+                    <option value="General price enquiry">General price enquiry</option>
+                  </select>
+                  <small>Pickup service guaranteed nahi hai; dukaan se confirm karein.</small>
+                </label>
+                <label class="customer-field wide" id="special-request">Other service request (optional)
+                  <textarea id="custom-service" rows="2" maxlength="180" placeholder="Example: Blanket stain removal, bridal lehenga care, etc."></textarea>
+                  <small>Iska rate estimate mein include nahi hoga jab tak owner price set na kare.</small>
+                </label>
+                <label class="customer-field wide">Special instructions (optional)<textarea id="customer-note" rows="2" maxlength="250" placeholder="Fabric details, special care, timing enquiry…"></textarea></label>
+              </div>
+            </div>
+            <div class="checkout-summary">
+              <h4>Your estimate</h4>
+              <p>Clear item-wise pricing before sending your WhatsApp message.</p>
+              <div class="bill-row"><span>Quantity</span><strong id="bill-qty">0 units</strong></div>
+              <div class="bill-row"><span>Selected products</span><strong id="bill-products">0 types</strong></div>
+              <div class="bill-row"><span>Additional / custom service</span><strong id="bill-custom">Not added</strong></div>
+              <div class="bill-total"><span>Estimated subtotal</span><strong id="quote-total">₹0</strong></div>
+              <button class="whatsapp-cta" id="quote-send" type="button" disabled>◉ &nbsp; Continue on WhatsApp ↗</button>
+              <div id="checkout-status" class="checkout-status" role="status" aria-live="polite"></div>
+              <p class="policy" id="estimate-note">Prices are sample until verified by owner. Final charges and service availability are confirmed by the shop. This is an enquiry, not a paid order.</p>
+            </div>
+          </div>
+        </section>
+        <div class="trust-row"><span>✓ No online payment</span><span>✓ Transparent item-wise estimate</span><span>✓ Direct to shop WhatsApp: +91 72199 09630</span></div>
       </div>
     </section>
     <section class="how" id="how">
       <div class="container">
         <div class="section-head"><div><div class="kicker">How it works</div><h2>Quick & simple.</h2></div><p>Website par enquiry banayein, baaki details direct shop se confirm kar lein.</p></div>
-        <div class="steps"><div class="step"><span class="step-num">01 / SELECT</span><h3>Choose garments</h3><p>Iron ya dry clean tab mein se garments aur quantity choose karein.</p></div><div class="step"><span class="step-num">02 / ENQUIRE</span><h3>Send on WhatsApp</h3><p>Selected items aur demo estimate message mein automatically add honge.</p></div><div class="step"><span class="step-num">03 / CONFIRM</span><h3>Confirm with shop</h3><p>Final rates, pickup/drop-off options aur delivery timing direct shop se poochhein.</p></div></div>
+        <div class="steps"><div class="step"><span class="step-num">01 / SELECT</span><h3>Choose service & quantity</h3><p>Product search karein, + / − se quantity set karein, aur apna item-wise total dekhein.</p></div><div class="step"><span class="step-num">02 / ENQUIRE</span><h3>Review your basket</h3><p>Har product ka rate × quantity aur total dekhein. Zarurat ho to custom service bhi likhein.</p></div><div class="step"><span class="step-num">03 / CONFIRM</span><h3>WhatsApp to confirm</h3><p>Detailed item list aur estimate WhatsApp draft mein khulega. Shop se final price aur timing confirm karein.</p></div></div>
       </div>
     </section>
     <section class="contact" id="contact">
@@ -103,102 +255,225 @@
   </main>
   <footer><div class="container foot"><span><strong>Sirsi Dryclean</strong> · Ironing & Dry Cleaning</span><span>Made for easy enquiries · <a href="tel:+917219909630">+91 72199 09630</a> · <a href="/admin/">Admin Login</a></span></div></footer>
   <a class="floating-wa" aria-label="Chat on WhatsApp" href="https://wa.me/917219909630?text=Namaste%20Sirsi%20Dryclean%21" target="_blank" rel="noopener noreferrer">◉ &nbsp; WhatsApp</a>
+  <div class="mobile-cart-bar" id="mobile-cart-bar" hidden><div><strong id="mobile-total">₹0</strong><small id="mobile-count">0 units</small></div><a href="#basket">View basket ↗</a></div>
   <script>
-    // IMPORTANT: DEMO prices. Replace with shop-confirmed rates before going public.
-    // All rates are INR per garment unless otherwise stated.
-    let PRICES = {
-      iron: [
-        { id: 'iron-shirt', name: 'Shirt', price: 10, detail: 'Per piece · demo' },
-        { id: 'iron-pant', name: 'Pant / Trouser', price: 15, detail: 'Per piece · demo' },
-        { id: 'iron-tshirt', name: 'T-shirt', price: 10, detail: 'Per piece · demo' },
-        { id: 'iron-kurta', name: 'Kurta', price: 15, detail: 'Per piece · demo' },
-        { id: 'iron-saree', name: 'Saree', price: 40, detail: 'Per piece · demo' },
-        { id: 'iron-bedsheet', name: 'Bedsheet', price: 25, detail: 'Per piece · demo' }
-      ],
-      dry: [
-        { id: 'dry-shirt', name: 'Shirt', price: 80, detail: 'Per piece · demo' },
-        { id: 'dry-pant', name: 'Pant / Trouser', price: 90, detail: 'Per piece · demo' },
-        { id: 'dry-kurta', name: 'Kurta', price: 120, detail: 'Per piece · demo' },
-        { id: 'dry-saree', name: 'Saree', price: 250, detail: 'Per piece · demo' },
-        { id: 'dry-suit', name: 'Suit Set', price: 300, detail: 'Per set · demo' },
-        { id: 'dry-jacket', name: 'Jacket', price: 300, detail: 'Per piece · demo' }
-      ]
-    };
-    const selection = Object.create(null);
-    let currentTab = 'iron';
-    const priceList = document.getElementById('price-list');
-    const sendButton = document.getElementById('quote-send');
-    const tabs = [...document.querySelectorAll('[data-tab]')];
-    let allItems = [...PRICES.iron.map(i=>({...i,category:'iron'})),...PRICES.dry.map(i=>({...i,category:'dry'}))];
-    let published=false;
-    const amount = n => `₹${n.toLocaleString('en-IN')}`;
-    function renderPrices(){
-      priceList.replaceChildren();
-      for(const item of PRICES[currentTab]){
-        const article = document.createElement('article'); article.className = 'price-card';
-        const info = document.createElement('div'); const title = document.createElement('h3'); title.textContent=item.name;
-        const small = document.createElement('small'); small.textContent=item.detail; info.append(title,small);
-        const side = document.createElement('div'); side.style.textAlign='right';
-        const money = document.createElement('div'); money.className='amount'; money.textContent=amount(item.price);
-        const actions = document.createElement('div'); actions.className='price-actions'; actions.style.justifyContent='flex-end'; actions.style.marginTop='8px';
-        const minus = document.createElement('button'); minus.className='add-btn'; minus.type='button'; minus.textContent='−'; minus.setAttribute('aria-label',`Remove one ${item.name} from ${currentTab==='iron'?'ironing':'dry cleaning'}`);
-        minus.addEventListener('click',()=>changeQuantity(item.id,-1));
-        const qty = document.createElement('span');qty.className='qty';qty.textContent=selection[item.id]||0;
-        const plus = document.createElement('button');plus.className='add-btn';plus.type='button';plus.textContent='+';plus.setAttribute('aria-label',`Add one ${item.name} for ${currentTab==='iron'?'ironing':'dry cleaning'}`);
-        plus.addEventListener('click',()=>changeQuantity(item.id,1));actions.append(minus,qty,plus);side.append(money,actions);article.append(info,side);priceList.append(article);
+
+  'use strict';
+  const CATEGORY={iron:'Ironing / Press',dry:'Dry Cleaning',wash:'Laundry / Wash',other:'Other Care'};
+  const TYPES=Object.keys(CATEGORY);
+  const SHOP_WHATSAPP='917219909630';
+  const money=n=>'₹'+Number(n).toLocaleString('en-IN');
+  const $=id=>document.getElementById(id);
+  let prices={iron:[],dry:[],wash:[],other:[]};
+  let published=false,loaded=false,category='all',busy=false,selection=Object.create(null);
+  try{
+    const saved=JSON.parse(sessionStorage.getItem('sirsi_basket_v3')||'{}');
+    for(const [id,qty] of Object.entries(saved)){
+      if(typeof id==='string'&&Number.isInteger(qty)&&qty>0&&qty<=99)selection[id]=qty;
+    }
+  }catch(_e){}
+  const getAll=()=>TYPES.flatMap(k=>prices[k].map(i=>({...i,category:k})));
+  const qtyOf=id=>Number(selection[id]||0);
+  const chosen=()=>getAll().filter(i=>qtyOf(i.id)>0);
+  const totalOf=items=>items.reduce((n,i)=>n+i.price*qtyOf(i.id),0);
+  function setStatus(text,isError=false){
+    $('checkout-status').textContent=text;
+    $('checkout-status').classList.toggle('error',isError);
+  }
+  function make(tag,className,text){
+    const e=document.createElement(tag);
+    if(className)e.className=className;
+    if(text!==undefined)e.textContent=text;
+    return e;
+  }
+  function iconFor(item){
+    const s=item.name.toLowerCase();
+    if(/saree|sari|lehenga|gown/.test(s))return '🥻';
+    if(/pant|trouser|jean/.test(s))return '👖';
+    if(/shirt|kurta|top|blouse|t-shirt/.test(s))return '👔';
+    if(/jacket|coat|suit|blazer/.test(s))return '🧥';
+    if(/sheet|blanket|curtain|pillow/.test(s))return '🛏️';
+    if(item.category==='wash')return '🧺';
+    return '✦';
+  }
+  function persist(){
+    try{sessionStorage.setItem('sirsi_basket_v3',JSON.stringify(selection));}catch(_e){}
+  }
+  function updateQty(id,value){
+    const num=Math.max(0,Math.min(99,Math.trunc(Number(value)||0)));
+    if(num)selection[id]=num;else delete selection[id];
+    persist();renderAll();
+  }
+  function stepper(item,compact=false){
+    const c=make('div','qty-control');
+    const min=make('button','qty-btn','−');
+    min.type='button';min.disabled=qtyOf(item.id)===0;
+    min.setAttribute('aria-label','Remove one '+item.name);
+    min.addEventListener('click',()=>updateQty(item.id,qtyOf(item.id)-1));
+    const input=make('input','qty-input');
+    input.type='number';input.min='0';input.max='99';input.step='1';input.inputMode='numeric';input.value=qtyOf(item.id);
+    input.setAttribute('aria-label',item.name+' quantity');
+    input.addEventListener('change',()=>updateQty(item.id,input.value));
+    const plus=make('button','qty-btn','+');
+    plus.type='button';plus.disabled=qtyOf(item.id)>=99;
+    plus.setAttribute('aria-label','Add one '+item.name);
+    plus.addEventListener('click',()=>updateQty(item.id,qtyOf(item.id)+1));
+    c.append(min,input,plus);
+    return c;
+  }
+  function renderCards(){
+    const host=$('price-list');host.replaceChildren();
+    const term=$('product-search').value.toLocaleLowerCase().trim();
+    const filtered=getAll().filter(i=>(category==='all'||i.category===category)&&
+      (i.name+' '+i.detail+' '+CATEGORY[i.category]).toLocaleLowerCase().includes(term));
+    $('catalog-meta').textContent=filtered.length+' service'+(filtered.length===1?'':'s')+' shown · Choose quantity using + / −';
+    $('catalog-empty').hidden=filtered.length!==0;
+    for(const item of filtered){
+      const card=make('article','price-card');
+      card.dataset.selected=qtyOf(item.id)>0?'true':'false';
+      const header=make('div','product-head');
+      header.append(make('span','product-icon',iconFor(item)));
+      const main=make('div','product-main');
+      main.append(make('h3','',item.name),make('small','',CATEGORY[item.category]));
+      header.append(main);
+      const tag=make('span','product-tag',published?'Shop-listed rate':'Demo rate');
+      const bottom=make('div','product-price-line');
+      const price=make('div','product-price',money(item.price));
+      price.append(make('small','',item.detail||'Per piece'));
+      bottom.append(price,stepper(item));
+      card.append(header,tag,bottom);
+      host.append(card);
+    }
+  }
+  function renderBasket(){
+    const items=chosen(),host=$('basket-lines');
+    host.replaceChildren();
+    if(!items.length)host.append(make('p','basket-empty','Abhi koi priced item select nahi kiya. Upar se plus (+) dabayein.'));
+    for(const item of items){
+      const row=make('div','basket-row');
+      const info=make('div');
+      info.append(make('div','basket-item-title',item.name),make('div','basket-item-detail',CATEGORY[item.category]+' · '+money(item.price)+' / '+item.detail));
+      row.append(info,stepper(item,true),make('strong','basket-line-price',money(item.price*qtyOf(item.id))));
+      host.append(row);
+    }
+    const count=items.reduce((n,i)=>n+qtyOf(i.id),0);
+    const total=totalOf(items),custom=$('custom-service').value.trim().length>0;
+    $('basket-count').textContent=count+' unit'+(count===1?'':'s');
+    $('bill-qty').textContent=count+' unit'+(count===1?'':'s');
+    $('bill-products').textContent=items.length+' type'+(items.length===1?'':'s');
+    $('bill-custom').textContent=custom?'Quote required':'Not added';
+    $('quote-total').textContent=money(total);
+    $('clear-cart').disabled=!count;
+    $('quote-send').disabled=busy||(!count&&!custom);
+    $('estimate-note').textContent=(published?'Shop-listed rates are an estimate.':'Demo rates are not yet verified by owner.')+
+      ' Custom service charges are excluded. Final price, pickup and timing must be confirmed by the shop. Enquiry only, no online payment.';
+    $('mobile-total').textContent=money(total);
+    $('mobile-count').textContent=count+' unit'+(count===1?'':'s');
+    $('mobile-cart-bar').hidden=count===0;
+    document.body.classList.toggle('has-basket',count>0);
+  }
+  function renderAll(){
+    renderCards();renderBasket();
+  }
+  function syncRates(data){
+    if(!data||!data.prices||!TYPES.every(k=>Array.isArray(data.prices[k])))throw new Error('Invalid price list.');
+    const next={iron:[],dry:[],wash:[],other:[]};
+    const ids=new Set();
+    for(const k of TYPES){
+      for(const x of data.prices[k]){
+        if(!x||typeof x.id!=='string'||typeof x.name!=='string'||!Number.isInteger(Number(x.price))||Number(x.price)<0||Number(x.price)>100000)continue;
+        if(ids.has(x.id))continue;
+        ids.add(x.id);
+        next[k].push({id:x.id,name:x.name,price:Number(x.price),detail:String(x.detail||'Per piece'),category:k});
       }
     }
-    function changeQuantity(id,delta){selection[id]=Math.max(0,Math.min(99,(selection[id]||0)+delta));renderPrices();renderQuote();}
-    function renderQuote(){
-      const chosen=allItems.filter(item=>selection[item.id]>0);
-      const count=chosen.reduce((sum,item)=>sum+selection[item.id],0);
-      const total=chosen.reduce((sum,item)=>sum+item.price*selection[item.id],0);
-      document.getElementById('quote-total').textContent=amount(total);
-      document.getElementById('quote-detail').textContent=count===0?'Select garments to get an estimate.':`${count} garment${count===1?'':'s'} selected · final price subject to shop confirmation`;
-      sendButton.disabled=!count;
+    prices=next;published=!!data.published;loaded=true;
+    for(const id of Object.keys(selection))if(!ids.has(id))delete selection[id];
+    persist();
+    const note=$('rate-note');
+    if(published){
+      note.style.background='#e5f7ed';note.style.color='#276b50';note.style.borderColor='#bfe2d0';
+      note.lastElementChild.textContent='Shop-listed prices · Ye rates dukaan ke admin ne verify kiye hain. Final service details WhatsApp par confirm karein.';
+    }else{
+      note.style.background='';note.style.color='';note.style.borderColor='';
+      note.lastElementChild.textContent='Sample / demo rates · Abhi dukaan se verified nahi hain. Final rate WhatsApp par confirm karein.';
     }
-    tabs.forEach(tab=>tab.addEventListener('click',()=>{
-      currentTab=tab.dataset.tab;
-      for(const btn of tabs){const active=btn===tab;btn.setAttribute('aria-selected',String(active));btn.tabIndex=active?0:-1;}
-      priceList.setAttribute('aria-labelledby',tab.id);renderPrices();
-    }));
-    document.querySelector('[role="tablist"]').addEventListener('keydown',e=>{
-      if(!['ArrowLeft','ArrowRight'].includes(e.key))return;
-      e.preventDefault();const next=currentTab==='iron'?'dry':'iron';const tab=tabs.find(t=>t.dataset.tab===next);tab.click();tab.focus();
-    });
-    sendButton.addEventListener('click',()=>{
-      const chosen=allItems.filter(item=>selection[item.id]>0);if(!chosen.length)return;
-      const lines=chosen.map(item=>`${item.category==='iron'?'Iron':'Dry Clean'} - ${item.name} x ${selection[item.id]} = ${amount(item.price*selection[item.id])}`);
-      const total=chosen.reduce((sum,item)=>sum+item.price*selection[item.id],0);
-      const msg=`Namaste Sirsi Dryclean!\n\nMujhe in garments ke liye enquiry karni hai:\n${lines.join('\n')}\n\n${published?'Shop-listed':'Demo'} estimate: ${amount(total)}\nKripya final rate, availability aur process confirm karein.\n${published?'':'(Website par prices sample hain.)'}`;
-      window.open(`https://wa.me/917219909630?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer');
-    });
-    async function loadShopPrices(){
-      try{
-        const res=await fetch('/api/prices',{cache:'no-store'});
-        if(!res.ok)throw new Error('Pricing unavailable');
-        const data=await res.json();
-        if(!Array.isArray(data?.prices?.iron)||!Array.isArray(data?.prices?.dry))throw new Error('Invalid pricing data');
-        PRICES={iron:data.prices.iron.map(i=>({...i,detail:i.detail+(data.published?'':' · demo')})),
-                dry:data.prices.dry.map(i=>({...i,detail:i.detail+(data.published?'':' · demo')}))};
-        published=!!data.published;
-        allItems=[...PRICES.iron.map(i=>({...i,category:'iron'})),...PRICES.dry.map(i=>({...i,category:'dry'}))];
-        const ids=new Set(allItems.map(i=>i.id));
-        for(const id of Object.keys(selection))if(!ids.has(id))delete selection[id];
-        const note=document.getElementById('rate-note');
-        if(published){
-          note.style.background='#e6f7ed';note.style.borderColor='#c4e7d4';note.style.color='#205e46';
-          note.querySelector('span:last-child').textContent='Shop-listed rates: Owner ne price list update aur verify ki hai. Special fabric ka final rate shop se confirm karein.';
-        }else{
-          note.querySelector('span:last-child').textContent='Sample prices only: Ye demo rates hain, shop ke confirmed rates nahi. Final price phone/WhatsApp par confirm karein.';
+    renderAll();
+  }
+  async function fetchRates(){
+    const r=await fetch('/api/prices',{cache:'no-store'});
+    if(!r.ok)throw new Error('Live prices abhi available nahi hain. Dobara try karein.');
+    return r.json();
+  }
+  async function init(){
+    try{syncRates(await fetchRates());}
+    catch(_e){
+      loaded=false;
+      $('catalog-meta').textContent='Price list abhi unavailable hai. Neeche custom WhatsApp enquiry likh sakte hain.';
+      $('rate-note').lastElementChild.textContent='Live shop rates temporarily unavailable. Price ke liye direct WhatsApp enquiry bhejein.';
+      renderAll();
+    }
+  }
+  function cleanText(text){return String(text||'').trim().replace(/\s+/g,' ');}
+  async function sendWhatsApp(){
+    if(busy)return;
+    let items=chosen();
+    const custom=cleanText($('custom-service').value);
+    if(!items.length&&!custom){setStatus('Select product quantity ya custom request likhein.',true);return;}
+    const phone=cleanText($('customer-phone').value),digits=phone.replace(/\D/g,'');
+    if(phone&&!(/^[6-9]\d{9}$/.test(digits)||/^91[6-9]\d{9}$/.test(digits))){
+      setStatus('Sahi 10-digit Indian mobile number likhein ya blank chhod dein.',true);
+      $('customer-phone').focus();return;
+    }
+    busy=true;$('quote-send').disabled=true;setStatus('Checking latest shop rates…');
+    try{
+      if(items.length){
+        const before=items.map(i=>i.id+':'+i.price+':'+i.name+':'+i.detail).join('|');
+        const current=await fetchRates();
+        syncRates(current);
+        items=chosen();
+        const after=items.map(i=>i.id+':'+i.price+':'+i.name+':'+i.detail).join('|');
+        if(before!==after){
+          setStatus('Rates ya products update hue hain. Naya basket check karke WhatsApp button dobara dabayein.',true);
+          return;
         }
-        document.getElementById('estimate-label').textContent=published?'Shop-listed estimate':'Demo estimate';
-        renderPrices();renderQuote();
-      }catch(_error){
-        document.getElementById('rate-note').querySelector('span:last-child').textContent='Rates could not be loaded. Ye sirf demo rates hain. Kripya shop se final prices confirm karein.';
       }
-    }
-    renderPrices();renderQuote();loadShopPrices();
+      const total=totalOf(items);
+      const count=items.reduce((n,i)=>n+qtyOf(i.id),0);
+      const lines=items.map((i,n)=>(n+1)+'. '+i.name+' ('+CATEGORY[i.category]+')\n   '+qtyOf(i.id)+' × '+money(i.price)+' ('+i.detail+') = '+money(i.price*qtyOf(i.id)));
+      const name=cleanText($('customer-name').value);
+      const note=cleanText($('customer-note').value);
+      const preference=$('service-preference').value;
+      let message='Namaste Sirsi Dryclean! 🧺\n\nMeri service / price enquiry:\n';
+      if(lines.length)message+='\n'+lines.join('\n')+'\n\nTotal quantity: '+count+'\n'+(published?'Shop-listed':'Demo (unverified)')+' estimated subtotal: '+money(total)+'\n';
+      if(custom)message+='\nOther service (rate confirm karein): '+custom+'\n';
+      if(name)message+='\nName: '+name;
+      if(phone)message+='\nContact: '+phone;
+      message+='\nService preference: '+preference;
+      if(note)message+='\nSpecial instructions: '+note;
+      message+='\n\nKripya final rate, timing aur service availability confirm karein. Yeh sirf enquiry hai, confirmed order ya payment nahi.';
+      if(!published&&lines.length)message+='\nShown product prices are demo until shop verification.';
+      if(message.length>3000){setStatus('Message lamba hai. Items ya instructions thode kam karein.',true);return;}
+      setStatus('Opening WhatsApp with item-wise estimate…');
+      window.location.assign('https://wa.me/'+SHOP_WHATSAPP+'?text='+encodeURIComponent(message));
+    }catch(e){setStatus(e.message||'WhatsApp enquiry ready nahi ho paayi. Please retry.',true);}
+    finally{busy=false;renderBasket();}
+  }
+  document.querySelectorAll('[data-category]').forEach(btn=>btn.addEventListener('click',()=>{
+    category=btn.dataset.category;
+    for(const b of document.querySelectorAll('[data-category]'))b.setAttribute('aria-selected',String(b===btn));
+    $('price-list').setAttribute('aria-labelledby',btn.id);
+    renderCards();
+  }));
+  $('product-search').addEventListener('input',renderCards);
+  $('custom-service').addEventListener('input',()=>{renderBasket();setStatus('');});
+  $('clear-cart').addEventListener('click',()=>{
+    if(!Object.keys(selection).length)return;
+    selection=Object.create(null);persist();renderAll();setStatus('Basket cleared.');
+  });
+  $('quote-send').addEventListener('click',sendWhatsApp);
+  renderAll();init();
+
   </script>
 </body>
 </html>
